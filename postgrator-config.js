@@ -1,3 +1,4 @@
+'use strict';
 require('dotenv').config();
 
 module.exports = {
@@ -8,4 +9,4 @@ module.exports = {
   "database": process.env.MIGRATION_DB_NAME,
   "username": process.env.MIGRATION_DB_USER,
   "password": process.env.MIGRATION_DB_PASS
-}
+};

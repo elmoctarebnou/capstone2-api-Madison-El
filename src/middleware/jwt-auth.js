@@ -1,3 +1,4 @@
+'use strict';
 const { JsonWebTokenError } = require('jsonwebtoken')
 const AuthService = require('../auth/auth-service')
 
