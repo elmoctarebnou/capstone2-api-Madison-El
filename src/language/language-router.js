@@ -74,13 +74,8 @@ languageRouter
         req.app.get('db'),
         req.language.id,
       )
-      for(let i = 0; i < words.length; i ++){
-        linkedList.push(words[i]);
-      }
-      if(guess !== linkedList.head.value.translation){
-        linkedList.move(linkedList.head.value.memory_value);
-      }
-      res.send(linkedList.head.value);
+      
+      res.send(words);
     } catch (error) {
       next(error)
     }

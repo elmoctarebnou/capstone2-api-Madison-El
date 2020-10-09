@@ -45,6 +45,22 @@ const LanguageService = {
       .where({language_id})
       .first();
   },
+  // updateId(db, language_id){
+  //   return db
+  //   .from("word")
+  //   .select()
+  // }
+  // getWordById(db, current, nextNode){
+  //   return db('word')
+  //     .where({ id: current.id, language_id: current.language_id})
+  //     .update({
+  //       correct_count: current.correct_count,
+  //       incorrect_count: current.incorrect_count,
+  //       memory_value: current.memory_value,
+  //       next: nextNode != null ? nextNode.id: null
+  //     })
+  // }
+  // [entraine toi, bonjour, maison, developpeur, traduire]
 }
 
 module.exports = LanguageService

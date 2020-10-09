@@ -47,6 +47,7 @@ class LinkedList{
     this.head = newHead;
     return this;
   }
+  
 }
 
 module.exports = {
