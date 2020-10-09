@@ -1,9 +1,12 @@
 'use strict';
 const express = require('express')
 const LanguageService = require('./language-service')
+const linkedListService = require('./linked-list-service')
 const { requireAuth } = require('../middleware/jwt-auth')
-
 const languageRouter = express.Router()
+const jsonBodyParser = express.json()
+
+
 
 languageRouter
   .use(requireAuth)
@@ -13,12 +16,10 @@ languageRouter
         req.app.get('db'),
         req.user.id,
       )
-
       if (!language)
         return res.status(404).json({
           error: `You don't have any languages`,
         })
-
       req.language = language
       next()
     } catch (error) {
@@ -42,9 +43,8 @@ languageRouter
       next(error)
     }
   })
-
 languageRouter
-  .get('/head', async (req, res, next) => {
+.get('/head', async (req, res, next) => {
     try {
       const nextWord = await LanguageService.getLanguageHead(
         req.app.get("db"),
@@ -56,17 +56,35 @@ languageRouter
         wordIncorrectCount: nextWord.incorrect_count,
         totalScore: req.language.total_score
       });
-    next();
-  }
-    catch(error){
-    next(error);
+      next();
+    }catch(error){
+      next(error);
   }
 });
 
 languageRouter
-  .post('/guess', async (req, res, next) => {
-    // implement me
-    res.send('implement me!')
+  .post('/guess', jsonBodyParser, async (req, res, next) => {
+    try {
+      const {guess} = req.body;
+      if(!guess) res.status(400).send({
+        error: `Missing 'guess' in request body`,
+      })
+      const linkedList = new linkedListService.LinkedList();
+      const words = await LanguageService.getLanguageWords(
+        req.app.get('db'),
+        req.language.id,
+      )
+      for(let i = 0; i < words.length; i ++){
+        linkedList.push(words[i]);
+      }
+      if(guess !== linkedList.head.value.translation){
+        linkedList.move(linkedList.head.value.memory_value);
+      }
+      res.send(linkedList.head.value);
+    } catch (error) {
+      next(error)
+    }
+   
   })
 
 module.exports = languageRouter

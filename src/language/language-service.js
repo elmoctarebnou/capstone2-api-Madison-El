@@ -32,8 +32,17 @@ const LanguageService = {
   getLanguageHead(db, language_id){
     return db
       .from("word")
-      .join("word.id", "language", "language.head")
-      .where("language.id", language_id)
+      .select(
+        'id',
+        'language_id',
+        'original',
+        'translation',
+        'next',
+        'memory_value',
+        'correct_count',
+        'incorrect_count',
+      )
+      .where({language_id})
       .first();
   },
 }
