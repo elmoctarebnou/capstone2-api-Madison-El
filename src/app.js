@@ -16,7 +16,9 @@ app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
 }));
 app.use(cors());
 app.use(helmet());
-
+app.get('/', (req, res, next) => {
+  res.send('Welcome to SpeakEZ');
+});
 app.use('/api/auth', authRouter);
 app.use('/api/language', languageRouter);
 app.use('/api/user', userRouter);
