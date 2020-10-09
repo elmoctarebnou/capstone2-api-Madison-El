@@ -31,18 +31,10 @@ const LanguageService = {
   },
   getLanguageHead(db, language_id){
     return db
-      .from("word")
-      .select(
-        'id',
-        'language_id',
-        'original',
-        'translation',
-        'next',
-        'memory_value',
-        'correct_count',
-        'incorrect_count',
-      )
+      .select('*')
+      .from('language')
       .where({language_id})
+      .join('word', {'word.id':'language.head'})
       .first();
   },
   // updateId(db, language_id){

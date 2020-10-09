@@ -74,7 +74,6 @@ languageRouter
         req.app.get('db'),
         req.language.id,
       )
-      
       res.send(words);
     } catch (error) {
       next(error)
