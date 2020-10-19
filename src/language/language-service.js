@@ -17,16 +17,7 @@ const LanguageService = {
   getLanguageWords(db, language_id) {
     return db
       .from('word')
-      .select(
-        'id',
-        'language_id',
-        'original',
-        'translation',
-        'next',
-        'memory_value',
-        'correct_count',
-        'incorrect_count',
-      )
+      .select('*')
       .where({ language_id })
   },
   getLanguageHead(db, language_id){
@@ -37,22 +28,31 @@ const LanguageService = {
       .join('word', {'word.id':'language.head'})
       .first();
   },
-  // updateId(db, language_id){
-  //   return db
-  //   .from("word")
-  //   .select()
-  // }
-  // getWordById(db, current, nextNode){
-  //   return db('word')
-  //     .where({ id: current.id, language_id: current.language_id})
-  //     .update({
-  //       correct_count: current.correct_count,
-  //       incorrect_count: current.incorrect_count,
-  //       memory_value: current.memory_value,
-  //       next: nextNode != null ? nextNode.id: null
-  //     })
-  // }
-  // [entraine toi, bonjour, maison, developpeur, traduire]
+  updateWordTable(db, word){
+    return db
+      .select('*')
+      .from('word')
+      .where('id', word.id)
+      .update({
+        'id': word.id,
+        'original': word.original,
+        'translation': word.translation,
+        'memory_value': word.memory_value,
+        'correct_count': word.correct_count,
+        'incorrect_count': word.incorrect_count,
+        'language_id': word.language_id,
+        'next': word.next
+      })
+  },
+  updateLanguageTotalScore(db, language_id, totalScore){
+    return db
+      .select('total_score')
+      .from('language')
+      .where('id', language_id)
+      .update('total_score', totalScore);
+  }
+
+
 }
 
 module.exports = LanguageService

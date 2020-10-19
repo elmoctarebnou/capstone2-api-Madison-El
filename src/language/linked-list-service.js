@@ -30,24 +30,49 @@ class LinkedList{
     }
     this.length ++;
   }
-  move(memory_value){
+  shift(memory_value){
     let count = 0;
     let newHead = this.head.next;
     let current = this.head;
-    while(count < memory_value){
-      if(current.next === null){
-        current.next = this.head;
-      }else {
+    if(memory_value >= this.length){
+      this.head = newHead;
+      this.tail.next = current;
+      current.next = null;
+      this.tail = current;
+      return this;
+    }else{
+      while(count < memory_value){
         current = current.next;
+        count ++;
       }
-      count ++;
+      this.head.next = current.next;
+      current.next = this.head;
+      this.head = newHead;
+      return this;
     }
-    this.head.next = current.next.next;
-    current.next = this.head;
-    this.head = newHead;
-    return this;
   }
-  
+  updateIdAndNext(firstId, firstNext){
+    let count = 1;
+    let current = this.head;
+    while(count <= this.length){
+      current.value.id = firstId;
+      current.value.next = firstNext;
+      current = current.next;
+      firstId++;
+      firstNext++;
+      count++;
+    }
+    this.tail.value.next = null;
+    this.tail.next = null;
+  }
+  updateCorrect(){
+    this.head.value.correct_count ++;
+    this.head.value.memory_value *= 2;
+  }
+  updateIncorrect(){
+    this.head.value.incorrect_count ++;
+    this.head.value.memory_value = 1;
+  }
 }
 
 module.exports = {
