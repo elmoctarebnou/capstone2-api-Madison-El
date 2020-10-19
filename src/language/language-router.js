@@ -119,7 +119,6 @@ languageRouter
         current = current.next;
         i++
       }
-      console.log(newWordsList)
       // update words table
       for(let i = 0; i < newWordsList.length; i++){
         await LanguageService.updateWordTable(req.app.get('db'), newWordsList[i]);
