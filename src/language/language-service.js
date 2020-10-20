@@ -49,7 +49,8 @@ const LanguageService = {
       .select('total_score')
       .from('language')
       .where('id', language_id)
-      .update('total_score', totalScore);
+      .update('total_score', totalScore)
+      .returning('*');
   }
 
 
