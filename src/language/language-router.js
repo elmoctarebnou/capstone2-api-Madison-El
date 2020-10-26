@@ -77,42 +77,29 @@ languageRouter
       for(let i = 0; i < wordsList.length; i++){
         linkedList.push(wordsList[i]);
       }
-      const firstWord = linkedList.head.value;
-      const nextWord = linkedList.head.next.value;
-  
+      let firstWord = linkedList.head.value;
+      let nextWord = linkedList.head.next.value;
+      let score = req.language.total_score;
+      let isCorrect = false;
       // incorrect guess
       if(guess !== firstWord.translation){
-        
-        res.status(200).json({
-          nextWord: nextWord.original,
-          totalScore: req.language.total_score,
-          wordCorrectCount: firstWord.correct_count,
-          wordIncorrectCount: firstWord.incorrect_count,
-          answer: firstWord.translation,
-          isCorrect: false
-        })
         linkedList.updateIncorrect();
       }
       
       // correct guess
+      
       if(guess === firstWord.translation){
-        const score = await LanguageService.updateLanguageTotalScore(
+        await LanguageService.updateLanguageTotalScore(
           req.app.get('db'),
           req.language.id,
           req.language.total_score +=1
-          )
-          res.status(200).json({
-            nextWord: nextWord.original,
-            wordCorrectCount: firstWord.correct_count,
-            wordIncorrectCount: firstWord.incorrect_count,
-            totalScore: score[0].total_score,
-            answer: firstWord.translation,
-            isCorrect: true
-          })
+        )
         linkedList.updateCorrect();
+        score +=1;
+        isCorrect = true;
       }
+      linkedList.shift(firstWord.memory_value);
       await linkedList.updateIdAndNext(firstWord.id, firstWord.next);
-      
       let newWordsList = [];
       let current = linkedList.head;
       let i = 0;
@@ -125,6 +112,14 @@ languageRouter
       for(let i = 0; i < newWordsList.length; i++){
         await LanguageService.updateWordTable(req.app.get('db'), newWordsList[i]);
       }
+      res.status(200).json({
+        nextWord: nextWord.original,
+        totalScore: score,
+        wordCorrectCount: nextWord.correct_count,
+        wordIncorrectCount: nextWord.incorrect_count,
+        answer: firstWord.translation,
+        isCorrect: isCorrect
+      })
     } catch (error) {
       next(error)
     }
