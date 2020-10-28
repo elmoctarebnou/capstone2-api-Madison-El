@@ -7,11 +7,13 @@ Madison Brown
 Angela Thomas
 
 ## Links:
+
 Live Application:
 Client Repo:
 API Repo:
 
 ## Demo Account:
+
 Username: admin
 Password: pass
 
