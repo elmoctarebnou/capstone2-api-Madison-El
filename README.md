@@ -2,8 +2,8 @@
 
 ## Team:
 
-El Moctar
-Madison Brown
+//El Moctar
+//Madison Brown
 Angela Thomas
 
 ## Links:
