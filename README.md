@@ -9,25 +9,22 @@ Angela Thomas
 
 ## Links:
 
-Live Application:
+Live Application: https://speak-ez.vercel.app/
 <br/>
-Client Repo:
+Client Repo:https://github.com/elmoctarebnou/capstone2-Madison-El-Angela
 <br/>
-API Repo:
 
 ## Demo Account:
 
-Username: admin
+Username: leo
 <br/>
-Password: pass
+Password: Leo12345@
 
 ## Statement:
 
 In this capstone, a user learns a new language utilizing spaced repetition, a learning technique in which more challenging words are shown more frequently and words that had their answers guessed correctly are shown less frequently. 
 
-## Dashboard
-
-## Learning Page
+# Endpoints
 
 ## Tech Stack:
 Front End: JavaScript, React, HTML5, CSS3
