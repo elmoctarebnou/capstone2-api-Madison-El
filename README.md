@@ -39,6 +39,14 @@ This endpoint allows the user to submit their guess for the correct translation 
 }
 ```
 
+## POST /api/auth/token
+This endpoint allows a user to login to their account.
+
+```
+{
+    'username':'anyuserUsername'
+    'password':'anyuserPassword123'
+}
 ## Dashboard
 
 ## Learning Page
