@@ -32,6 +32,9 @@ This endpoint grabs the head, which points to the next word that will come in th
 
 ## POST /api/language/guess
 This endpoint allows the user to submit their guess for the correct translation and checks it against the answer in the database.
+<br/>
+Example request body:
+<br/>
 
 ```
 {
@@ -41,7 +44,9 @@ This endpoint allows the user to submit their guess for the correct translation 
 
 ## POST /api/auth/token
 This endpoint allows a user to login to their account.
-
+<br/>
+Example request body:
+<br/>
 ```
 {
     'username':'anyuserUsername'
