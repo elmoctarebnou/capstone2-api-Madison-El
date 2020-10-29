@@ -47,6 +47,8 @@ This endpoint allows a user to login to their account.
     'username':'anyuserUsername'
     'password':'anyuserPassword123'
 }
+```
+
 ## Dashboard
 
 ## Learning Page
