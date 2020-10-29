@@ -21,9 +21,22 @@ Username: admin
 <br/>
 Password: pass
 
-## Statement:
+## Endpoints:
 
-In this capstone, a user learns a new language utilizing spaced repetition, a learning technique in which more challenging words are shown more frequently and words that had their answers guessed correctly are shown less frequently. 
+## GET /api/language
+This endpoint retrieves words from the database.
+
+## GET /api/language/head
+This endpoint grabs the head, which points to the next word that will come in the list.
+
+## POST /api/language/guess
+This endpoint allows the user to submit their guess for the correct translation and checks it against the answer in the database.
+
+```
+{
+    'guess': 'user answer'
+}
+```
 
 ## Dashboard
 
