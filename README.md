@@ -18,9 +18,9 @@ API Repo: https://github.com/elmoctarebnou/capstone2-api-Madison-El-Angela
 
 ## Demo Account:
 
-Username: leo
+Username: admim
 <br/>
-Password: Leo12345@
+Password: Admin12345@
 
 ## Endpoints:
 
